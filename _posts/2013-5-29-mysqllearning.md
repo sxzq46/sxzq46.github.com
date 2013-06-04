@@ -1,51 +1,53 @@
 ---
 layout : post
 category : lessons
-tags : [¿ªÊ¼]
+tags : [å¼€å§‹]
 ---
 
-ÉîÈëÇ³³öÑ§Ï°mysql-»ù´¡Æª
+mysqlåŸºç¡€ç¯‡
+    SQLè¯­å¥åˆ†ç±»
+        DDL(Data Definition Languagesæ•°æ®å®šä¹‰è¯­å¥)
+            åˆ›å»ºæ•°æ®åº“
+                è¯­æ³•ï¼šCREATE DATABASE dbnameï¼›
+                ä¾‹å­ï¼šmysql> create database test1;
+            åˆ é™¤æ•°æ®åº“
+                è¯­æ³•ï¼šdrop database dbname;
+                ä¾‹å­ï¼šmysql> drop database test1;
+                æ³¨æ„ï¼šæ•°æ®åº“åˆ é™¤åŽï¼Œä¸‹é¢çš„æ‰€æœ‰è¡¨æ•°æ®éƒ½ä¼šå…¨éƒ¨åˆ é™¤ï¼Œæ‰€ä»¥åˆ é™¤å‰ä¸€å®šè¦ä»”ç»†æ£€æŸ¥å¹¶åšå¥½ç›¸åº”å¤‡ä»½.
+            åˆ›å»ºè¡¨
+                è¯­æ³•ï¼šCREATE TABLE  tablename (column_name_1 column_type_1 constraintsï¼Œcolumn_name_2 column_type_2 constraintsï¼Œâ€¦â€¦column_name_n column_type_n constraintsï¼‰ 
+                ä¾‹å­ï¼šmysql> create table emp(ename varchar(10),hiredate date,sal decimal(10,2),deptno int(2));
+            åˆ é™¤è¡¨
+                è¯­æ³•ï¼šDROP TABLE tablename
+                ä¾‹å­ï¼šmysql> drop table emp;
+            ä¿®æ”¹è¡¨
+                ä¿®æ”¹è¡¨ç±»åž‹
+                    è¯­æ³•ï¼šALTER TABLE tablename MODIFY [COLUMN] column_definition [FIRST | AFTER col_name]
+                    ä¾‹å­ï¼šmysql> alter table emp modify ename varchar(20);
+                å¢žåŠ è¡¨å­—æ®µ
+                    è¯­æ³•ï¼šALTER TABLE tablename ADD [COLUMN] column_definition [FIRST | AFTER col_name]
+                    ä¾‹å­ï¼šmysql> alter table emp add column age int(3);
+                åˆ é™¤è¡¨å­—æ®µ
+                    è¯­æ³•ï¼šALTER TABLE tablename DROP [COLUMN] col_name;
+                    ä¾‹å­ï¼šmysql> alter table emp drop column age;
+                å­—æ®µä¿®æ”¹åå­—ç±»åž‹
+                    è¯­æ³•ï¼šALTER TABLE tablename CHANGE [COLUMN] old_col_name_column_definition [FIRST | AFTER col_name]
+                    ä¾‹å­ï¼šmysql> alter table emp change column age age1 int(4);
+                    æ³¨æ„ï¼šchangeå’Œmodifyéƒ½å¯ä»¥ä¿®æ”¹è¡¨çš„å®šä¹‰ï¼Œä¸åŒçš„æ˜¯changeåŽé¢éœ€è¦å†™ä¸¤æ¬¡åˆ—åï¼Œä¸æ–¹ä¾¿ã€‚ä½†æ˜¯changeçš„ä¼˜ç‚¹æ˜¯å¯ä»¥ä¿®æ”¹åˆ—åç§°ï¼Œmodifyåˆ™ä¸èƒ½ã€‚
+                ä¿®æ”¹å­—æ®µæŽ’åˆ—é¡ºåº
+                    ä¾‹å­1ï¼šmysql> alter table emp add birth date after ename;
+                    ä¾‹å­2ï¼šmysql> alter table emp modify age int(3) first;
+                    æ³¨æ„1ï¼šå‰é¢ä»‹ç»çš„çš„å­—æ®µå¢žåŠ å’Œä¿®æ”¹è¯­æ³•ï¼ˆADD/CNAHGE/MODIFYï¼‰ä¸­ï¼Œéƒ½æœ‰ä¸€ä¸ªå¯é€‰é¡¹first|after column_nameï¼Œè¿™ä¸ªé€‰é¡¹å¯ä»¥ç”¨æ¥ä¿®æ”¹å­—æ®µåœ¨è¡¨ä¸­çš„ä½ç½®ï¼Œé»˜è®¤ADDå¢žåŠ çš„æ–°å­—æ®µæ˜¯åŠ åœ¨è¡¨çš„æœ€åŽä½ç½®ï¼Œè€ŒCHANGE/MODIFYé»˜è®¤éƒ½ä¸ä¼šæ”¹å˜å­—æ®µçš„ä½ç½®ã€‚
+                    æ³¨æ„2ï¼šCHANGE/FIRST|AFTER COLUMNè¿™äº›å…³é”®å­—éƒ½å±žäºŽMySQLåœ¨æ ‡å‡†SQLä¸Šçš„æ‰©å±•ï¼Œåœ¨å…¶ä»–æ•°æ®åº“ä¸Šä¸ä¸€å®šé€‚ç”¨ã€‚
+                ä¿®æ”¹è¡¨å
+                    è¯­æ³•ï¼šALTER TABLE tablename RENAME [TO] new_table_name
+                    ä¾‹å­ï¼šmysql> alter table emp rename emp1;
+            å…¶ä»–æ“ä½œå‘½ä»¤
+                æŸ¥çœ‹æ•°æ®åº“ï¼šmysql> show databases;
+                é€‰æ‹©æ•°æ®åº“ï¼šmysql> use test1;
+                æŸ¥çœ‹æ•°æ®åº“é‡Œé¢çš„è¡¨ï¼šmysql> show tables;
+                æŸ¥çœ‹ä¸€ä¸‹è¡¨çš„å®šä¹‰ï¼šmysql> desc emp;
+                æŸ¥çœ‹åˆ›å»ºè¡¨çš„SQLè¯­å¥ï¼šmysql> show create table emp \G;
+        
+         
 
-    SQLÓï¾ä·ÖÀàÖ®DDLÆª
-        DDL(Data Definition LanguagesÊý¾Ý¶¨ÒåÓï¾ä)
-            ´´½¨Êý¾Ý¿â
-                Óï·¨£ºCREATE DATABASE dbname£»
-                Àý×Ó£ºmysql> create database test1;
-            É¾³ýÊý¾Ý¿â
-                Óï·¨£ºdrop database dbname;
-                Àý×Ó£ºmysql> drop database test1;
-                ×¢Òâ£ºÊý¾Ý¿âÉ¾³ýºó£¬ÏÂÃæµÄËùÓÐ±íÊý¾Ý¶¼»áÈ«²¿É¾³ý£¬ËùÒÔÉ¾³ýÇ°Ò»¶¨Òª×ÐÏ¸¼ì²é²¢×öºÃÏàÓ¦±¸·Ý.
-            ´´½¨±í
-                Óï·¨£ºCREATE TABLE  tablename (column_name_1 column_type_1 constraints£¬column_name_2 column_type_2 constraints£¬¡­¡­column_name_n column_type_n constraints£© 
-                Àý×Ó£ºmysql> create table emp(ename varchar(10),hiredate date,sal decimal(10,2),deptno int(2));
-            É¾³ý±í
-                Óï·¨£ºDROP TABLE tablename
-                Àý×Ó£ºmysql> drop table emp;
-            ÐÞ¸Ä±í
-                ÐÞ¸Ä±íÀàÐÍ
-                    Óï·¨£ºALTER TABLE tablename MODIFY [COLUMN] column_definition [FIRST | AFTER col_name]
-                    Àý×Ó£ºmysql> alter table emp modify ename varchar(20);
-                Ôö¼Ó±í×Ö¶Î
-                    Óï·¨£ºALTER TABLE tablename ADD [COLUMN] column_definition [FIRST | AFTER col_name]
-                    Àý×Ó£ºmysql> alter table emp add column age int(3);
-                É¾³ý±í×Ö¶Î
-                    Óï·¨£ºALTER TABLE tablename DROP [COLUMN] col_name;
-                    Àý×Ó£ºmysql> alter table emp drop column age;
-                ×Ö¶ÎÐÞ¸ÄÃû×ÖÀàÐÍ
-                    Óï·¨£ºALTER TABLE tablename CHANGE [COLUMN] old_col_name_column_definition [FIRST | AFTER col_name]
-                    Àý×Ó£ºmysql> alter table emp change column age age1 int(4);
-                    ×¢Òâ£ºchangeºÍmodify¶¼¿ÉÒÔÐÞ¸Ä±íµÄ¶¨Òå£¬²»Í¬µÄÊÇchangeºóÃæÐèÒªÐ´Á½´ÎÁÐÃû£¬²»·½±ã¡£µ«ÊÇchangeµÄÓÅµãÊÇ¿ÉÒÔÐÞ¸ÄÁÐÃû³Æ£¬modifyÔò²»ÄÜ¡£
-                ÐÞ¸Ä×Ö¶ÎÅÅÁÐË³Ðò
-                    Àý×Ó1£ºmysql> alter table emp add birth date after ename;
-                    Àý×Ó2£ºmysql> alter table emp modify age int(3) first;
-                    ×¢Òâ1£ºÇ°Ãæ½éÉÜµÄµÄ×Ö¶ÎÔö¼ÓºÍÐÞ¸ÄÓï·¨£¨ADD/CNAHGE/MODIFY£©ÖÐ£¬¶¼ÓÐÒ»¸ö¿ÉÑ¡Ïîfirst|after column_name£¬Õâ¸öÑ¡Ïî¿ÉÒÔÓÃÀ´ÐÞ¸Ä×Ö¶ÎÔÚ±íÖÐµÄÎ»ÖÃ£¬Ä¬ÈÏADDÔö¼ÓµÄÐÂ×Ö¶ÎÊÇ¼ÓÔÚ±íµÄ×îºóÎ»ÖÃ£¬¶øCHANGE/MODIFYÄ¬ÈÏ¶¼²»»á¸Ä±ä×Ö¶ÎµÄÎ»ÖÃ¡£
-                    ×¢Òâ2£ºCHANGE/FIRST|AFTER COLUMNÕâÐ©¹Ø¼ü×Ö¶¼ÊôÓÚMySQLÔÚ±ê×¼SQLÉÏµÄÀ©Õ¹£¬ÔÚÆäËûÊý¾Ý¿âÉÏ²»Ò»¶¨ÊÊÓÃ¡£
-                ÐÞ¸Ä±íÃû
-                    Óï·¨£ºALTER TABLE tablename RENAME [TO] new_table_name
-                    Àý×Ó£ºmysql> alter table emp rename emp1;
-            ÆäËû²Ù×÷ÃüÁî
-                ²é¿´Êý¾Ý¿â£ºmysql> show databases;
-                Ñ¡ÔñÊý¾Ý¿â£ºmysql> use test1;
-                ²é¿´Êý¾Ý¿âÀïÃæµÄ±í£ºmysql> show tables;
-                ²é¿´Ò»ÏÂ±íµÄ¶¨Òå£ºmysql> desc emp;
-                ²é¿´´´½¨±íµÄSQLÓï¾ä£ºmysql> show create table emp \G;
