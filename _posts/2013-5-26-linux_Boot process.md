@@ -3,8 +3,8 @@ layout : post
 category : lessons
 tags : [开始]
 ---
+linux引导流程
 
-						linux引导流程
 	固件firmware （CMOS/BIOS） POST加电自检-硬盘MBR 软硬件时钟设置查看同步
 						      |
 	自举程序BootLoader （GRUB） 载入内核  单用户模式、光盘修复模式 *  GRUB命令操作、GRUB密码设置 /boot/grub/grub.conf
